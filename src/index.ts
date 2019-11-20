@@ -84,9 +84,9 @@ const channel = 'CLFH073PU'; // 投稿チャンネルID形式
 
     if (todayBornMembers.length > 0) {
       let text =
-        '本日は誕生日おめでとうございます！\n' +
-        todayBornMembers.map(e => e.real_name).join('さん, ') +
-        'さん';
+        ':birthday: 本日は誕生日おめでとうございます！:birthday:\n' +
+        todayBornMembers.map(e => e.real_name).join('さん\n') +
+        'さん\n:tada::tada::tada::tada::tada::tada::tada::tada::tada::tada:';
       const chatPostMessageResponse = (await web.chat.postMessage({
         channel: channel,
         text: text,
