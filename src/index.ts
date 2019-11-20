@@ -86,7 +86,7 @@ const channel = 'C48P4EST1'; // 投稿チャンネルID形式 (#雑談)
       let text =
         ':birthday: 本日は誕生日おめでとうございます！:birthday:\n' +
         todayBornMembers.map(e => e.real_name).join('さん\n') +
-        'さん\n:tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada:';
+        'さん\n:tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada:';
       const chatPostMessageResponse = (await web.chat.postMessage({
         channel: channel,
         text: text,
