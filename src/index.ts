@@ -15,7 +15,7 @@ interface CustomFields {
   XfPXCSNNQ6: { value: string }; // 誕生日のカスタムフィールドのキーのID
 }
 
-const channel = 'CLFH073PU'; // 投稿チャンネルID形式
+const channel = 'C48P4EST1'; // 投稿チャンネルID形式 （#雑談)
 
 (async () => {
   try {
@@ -73,7 +73,7 @@ const channel = 'CLFH073PU'; // 投稿チャンネルID形式
 
       if (
         birthDay.getMonth() == today.getMonth() &&
-        birthDay.getDate() == today.getDate()
+        birthDay.getDate() == today.getDate() + 1
       ) {
         console.log(
           `[INFO] id: ${member.id} name: ${member.name} は今日が誕生日でした！！`
