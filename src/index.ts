@@ -16,6 +16,7 @@ interface CustomFields {
 }
 
 const channel = 'C48P4EST1'; // 投稿チャンネルID形式 (#雑談)
+// const channel = 'CLFH073PU'; // 投稿チャンネルID形式 (#sifue_bot_dev)
 
 (async () => {
   try {
@@ -37,6 +38,7 @@ const channel = 'C48P4EST1'; // 投稿チャンネルID形式 (#雑談)
 
     let counter = 1;
     for (const member of members) {
+      if (member.deleted || member.is_bot) continue;
       await sleep(20);
       console.log(
         `[INFO] ${counter++}人目/${members.length}人中 id: ${member.id} name: ${
