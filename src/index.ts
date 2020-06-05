@@ -34,11 +34,14 @@ const channel = 'C48P4EST1'; // 投稿チャンネルID形式 (#雑談)
     }
 
     const todayBornMembers = [];
-    const members = usersListResponse.members;
+    let members = usersListResponse.members;
+
+    members = members.filter(m => {
+      return !(m.deleted || m.is_bot);
+    });
 
     let counter = 1;
     for (const member of members) {
-      if (member.deleted || member.is_bot) continue;
       await sleep(20);
       console.log(
         `[INFO] ${counter++}人目/${members.length}人中 id: ${member.id} name: ${
