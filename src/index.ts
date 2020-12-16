@@ -26,15 +26,26 @@ const channel = 'C48P4EST1'; // 投稿チャンネルID形式 (#雑談)
       return;
     }
     const web = new WebClient(token);
-    const usersListResponse = (await web.users.list()) as UsersListResponse;
+    let cursor: string | undefined = '';
+    let members: any[] | undefined = [];
+    let usersListResponse: UsersListResponse;
 
-    if (!usersListResponse.members) {
+    do {
+      console.log(`[INFO] users.list APIを呼び出します。 cursor: ${cursor}`);
+      usersListResponse = (await web.users.list({
+        cursor,
+        limit: 200
+      })) as UsersListResponse;
+      members = members?.concat(usersListResponse.members);
+      cursor = usersListResponse.response_metadata?.next_cursor;
+    } while (cursor);
+
+    const todayBornMembers = [];
+
+    if (!members) {
       console.log(`[ERROR] membersがありませんでした。`);
       return;
     }
-
-    const todayBornMembers = [];
-    let members = usersListResponse.members;
 
     members = members.filter(m => {
       return !(m.deleted || m.is_bot);
@@ -99,7 +110,7 @@ const channel = 'C48P4EST1'; // 投稿チャンネルID形式 (#雑談)
         unfurl_links: true,
         unfurl_media: true
       })) as ChatPostMessageResponse;
-      console.log(`[INFO] 誕生日のお祝いの投稿が完了しました。`);
+      console.log(`[INFO] 誕生日のお祝いの投稿が完了しました。 text:\n${text}`);
     } else {
       console.log(`[INFO] todayBornMembersがありませんでした。`);
     }
