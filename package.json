@@ -25,6 +25,6 @@
   },
   "dependencies": {
     "@slack/web-api": "^5.5.0",
-    "moment": "^2.24.0"
+    "moment": "^2.29.2"
   }
 }
